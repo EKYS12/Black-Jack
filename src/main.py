@@ -1,3 +1,5 @@
-import lib.menu as menu
+from lib.menu import menu
+
+print('This is main')
 
 
