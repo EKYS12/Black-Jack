@@ -4,4 +4,3 @@ class Player:
         self.hand = []
         self.dealer = dealer
 
-
