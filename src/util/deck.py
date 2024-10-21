@@ -1,3 +1,7 @@
+'''
+This file is for the Deck class that will be used in a game of Black Jack. It is where all cards are first generated and drawn from.
+'''
+
 import numpy as np
 from card import Card
 
@@ -17,13 +21,13 @@ class Deck:
 
     def __str__(self):
         '''
-        String Print out of deck
+        String print out representation of the deck of cards.
         '''
 
-        deck_str = ''
+        deck_str = ""
 
         for card in self.stack:
-            deck_str = deck_str + f'\n{card}'
+            deck_str = deck_str + f'\n{str(card)}'
 
         return deck_str
 
@@ -41,6 +45,9 @@ class Deck:
         np.random.shuffle(self.stack)
 
     def draw(self):
+        '''
+        Method that draws a card from the deck by removing the top card of the deck while returning the card that is being removed.
+        '''
         if self.stack:
             return self.stack.pop(0)
         else:
