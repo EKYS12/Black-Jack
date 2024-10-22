@@ -10,12 +10,12 @@ class Player:
 
     def __str__(self):
         '''
-        String print out representation of the players hand.
+        String print out representation of the player and their hand.
         '''
 
-        hand_str = ""
+        player_str = "This Player's current hand is:"
 
         for card in self.hand:
-            hand_str = hand_str + f'\n{str(card)}'
+            player_str = player_str + f'\n{str(card)}'
 
-        return hand_str
+        return player_str
