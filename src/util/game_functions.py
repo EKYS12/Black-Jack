@@ -93,10 +93,37 @@ def game_setup(players, deck):
     return
 
 def game_status(players, player_titles):
+    '''
+    Function that prints out the current status of the game.
+    '''
 
     for i, player in enumerate(players):
         print(f'\n{player_titles[i]}:\n{player}\nTheir current hand is worth {count_hand(player)}')
     
         if check_black_jack(player):
-            print(f'\n{player_titles[i]} has Black Jack')
+            print(f'\n{player_titles[i]} has Black Jack.')
+
+        if check_bust(player):
+            print(f'\n{player_titles[i]} has busted.')
+
+def player_turn(player_title):
+    '''
+    Function to play through a players turn.
+    '''
+
+    print(f"\n{player_title}'s turn, would you like to hit or stand?")
+    print("\n1. Hit\n2. Stand")
+
+    valid_input = False
+
+    while valid_input == False:
+        player_choice = int(input(f'\nChoice: '))
+
+        if player_choice in [1,2]:
+            valid_input = True
+        else:
+            player_choice = int(input(f'\nInvalid Input, try again'))
+
+    return player_choice
+
 
