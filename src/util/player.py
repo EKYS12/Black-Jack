@@ -7,6 +7,7 @@ class Player:
 
         self.hand = []
         self.dealer = dealer
+        self.bust = False
 
     def __str__(self):
         '''

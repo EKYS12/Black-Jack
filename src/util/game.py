@@ -4,7 +4,7 @@ This file contains the game logic for Black Jack.
 
 from deck import Deck
 from player import Player
-import game_functions
+import game_functions as gf
 
 import sys
 
@@ -48,9 +48,9 @@ if user_input == 1:
     deck.shuffle()
     
     # Set up the game
-    game_functions.game_setup(players, deck)
+    gf.game_setup(players, deck)
     
-    game_functions.game_status(players, player_titles)
+    gf.game_status(players, player_titles)
     
     for i, player_title in enumerate(player_titles):
         turn = True
@@ -59,19 +59,38 @@ if user_input == 1:
             print()
             print(player_title)
             print(players[i])
-            player_choice = game_functions.player_turn(player_title)
+            player_choice = gf.player_turn(player_title)
     
             if player_choice == 1:
-                game_functions.hit(players[i], deck)
+                gf.hit(players[i], deck)
                 print(players[i])
     
-                if game_functions.check_bust(players[i]):
+                if gf.check_bust(players[i]):
                     turn = False
+                    players[i].bust = True
                     print(f'\n{player_title} has busted')
     
             else:
                 turn = False
-                print(f'\n{player_title} has chosen to stand with {game_functions.count_hand(players[i])} points.')
+                print(f'\n{player_title} has chosen to stand with {gf.count_hand(players[i])} points.')
+
+    winners = []
+    busted = []
+    max_points = 0
+
+    for i, player_title in enumerate(player_titles):
+
+        if players[i].bust == False:
+            if gf.count_hand(players[i]) > max_points:
+                winners = [player_title]
+                max_count = gf.count_hand(players[i])
+            elif gf.count_hand(players[i]) == max_points:
+                winners.append(player_title)
+
+        else:
+            busted.append(player_title)
+
+    print(f'{winners} won the game. {busted}  busted.')
 
 if user_input == 2:
     sys.exit()
